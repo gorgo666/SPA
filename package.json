@@ -1,0 +1,25 @@
+{
+  "name": "it-spa",
+  "version": "1.0.0",
+  "description": "Projekt polega na napisaniu aplikacji Single Page Application dla ośrodka SPA dedykowanego programistom.",
+  "main": "index.js",
+  "scripts": {
+    "start:db": "json-server --watch database.json",
+    "start:app": "parcel ./index.html --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.15.1",
+    "node-sass": "^4.13.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1"
+  }
+}
