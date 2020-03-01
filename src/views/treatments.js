@@ -1,11 +1,13 @@
+/** @format */
+
 import $ from 'jquery';
 
-export const treatments = () => {
+export const treats = () => {
   const fragment = $(new DocumentFragment());
 
   fragment
-    .append('<h2>Treatments</h2>')
-    .append('<p>Lorem ipsum dolor sit amet...</p>');
+    .append('<h2>Oops</h2>')
+    .append('<p>Użytkowniku! Co żeś uczynił?!</p>');
 
   return fragment;
 };

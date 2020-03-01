@@ -6,28 +6,96 @@
       "name": "Pokój unarny",
       "beds": 1,
       "guests": 1,
-      "price": 170
+      "price": 170,
+      "url": "/room1.183451b9.jpg"
     },
     {
       "id": 2,
       "name": "Pokój binarny",
       "beds": 1,
       "guests": 2,
-      "price": 240
+      "price": 240,
+      "url": "/room2.22dd2f1d.jpg"
     },
     {
       "id": 3,
       "name": "Pokój trójkowy",
       "beds": 2,
       "guests": 3,
-      "price": 290
+      "price": 290,
+      "url": "/room3.13f91a4e.jpg"
     },
     {
       "id": 4,
       "name": "Pokój czwórkowy",
       "beds": 2,
       "guests": 4,
-      "price": 340
+      "price": 340,
+      "url": "/room4.695d76e2.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Pokój unarny",
+      "beds": 1,
+      "guests": 1,
+      "price": 170,
+      "url": "/room1.183451b9.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Pokój binarny",
+      "beds": 1,
+      "guests": 2,
+      "price": 240,
+      "url": "/room2.22dd2f1d.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Pokój trójkowy",
+      "beds": 2,
+      "guests": 3,
+      "price": 290,
+      "url": "/room3.13f91a4e.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Pokój czwórkowy",
+      "beds": 2,
+      "guests": 4,
+      "price": 340,
+      "url": "/room4.695d76e2.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Pokój unarny",
+      "beds": 1,
+      "guests": 1,
+      "price": 170,
+      "url": "/room1.183451b9.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Pokój binarny",
+      "beds": 1,
+      "guests": 2,
+      "price": 240,
+      "url": "/room2.22dd2f1d.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Pokój trójkowy",
+      "beds": 2,
+      "guests": 3,
+      "price": 290,
+      "url": "/room3.13f91a4e.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Pokój czwórkowy",
+      "beds": 2,
+      "guests": 4,
+      "price": 340,
+      "url": "/room4.695d76e2.jpg"
     }
   ],
   "treatments": [
@@ -82,4 +150,3 @@
     }
   ]
 }
- 
