@@ -1,0 +1,77 @@
+/** @format */
+
+.rooms {
+  display: flex;
+  justify-content: center;
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.item {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 350px;
+  height: 350px;
+  margin: 24px;
+  padding: 5vw;
+
+  .beds {
+    display: none;
+  }
+  .guest {
+    display: none;
+  }
+}
+
+p {
+  padding: 5px;
+  background-color: #ddd;
+  opacity: 0.6;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+/* button */
+.hidden {
+  display: none;
+}
+.pbtn {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  width: 30%;
+  height: 10%;
+  background-color: white;
+  /* transform: rotateY(180deg); */
+  color: blacks;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.item:hover {
+  cursor: pointer;
+  animation: skew 1s forwards;
+  /* transform: skewX(90deg); */
+}
+.item:hover p {
+  cursor: pointer;
+  animation: skew 3s forwards;
+  /* transform: skewX(90deg); */
+}
+
+@keyframes skew {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    background-color: black;
+    color: white;
+    transform: rotateY(20deg);
+  }
+}

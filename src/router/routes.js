@@ -1,3 +1,5 @@
+/** @format */
+
 import { home, rooms, treatments, booking } from '../views';
 
 export const routes = [
