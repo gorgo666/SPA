@@ -104,49 +104,64 @@
       "name": "Masaż rozgrzanym monitorem",
       "area": "back",
       "time": 30,
-      "price": 80
+      "price": 80,
+      "url": "/treat1.693c2de5.jpg"
     },
     {
       "id": 2,
       "name": "Biczowanie kablem od myszy",
       "area": "back",
       "time": 20,
-      "price": 70
+      "price": 70,
+      "url": "/treat2.1cb3a450.jpg"
     },
     {
       "id": 3,
       "name": "Peeling odłamkami płyty CD",
       "area": "face",
       "time": 15,
-      "price": 50
+      "price": 50,
+      "url": "/treat7.bd7798f0.jpg"
     },
     {
       "id": 4,
       "name": "Pedicure woskiem z USB",
       "area": "legs",
       "time": 25,
-      "price": 100
+      "price": 100,
+      "url": "/treat4.ef6eddbb.jpg"
     },
     {
       "id": 5,
       "name": "Manicure analogowo-cyfrowy",
       "area": "hands",
       "time": 45,
-      "price": 150
+      "price": 150,
+      "url": "/treat4.ef6eddbb.jpg"
     },
     {
       "id": 6,
       "name": "Kąpiel w gorącej kawie",
       "area": "body",
       "time": 60,
-      "price": 200
+      "price": 200,
+      "url": "/treat5.5ffa7117.jpg"
     },
     {
       "id": 7,
       "name": "Depilacja dyskiem twardym",
       "area": "body",
       "time": 45,
-      "price": 120
+      "price": 120,
+      "url": "/treat6.f47bfdbb.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Depilacja dyskiem twardym",
+      "area": "body",
+      "time": 45,
+      "price": 120,
+      "url": "/treat7.bd7798f0.jpg"
     }
   ]
 }

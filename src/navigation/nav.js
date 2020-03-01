@@ -1,3 +1,5 @@
+/** @format */
+
 import $ from 'jquery';
 import { routeChange } from '../router/route-change';
 import { routes } from '../router/routes';
@@ -8,6 +10,7 @@ export const nav = () => {
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <span class="navbar-brand">IT SPA</span>
       <ul class="navbar-nav mr-auto"></ul>
+      <p>koszyk</p>
     </nav>
   `);
 

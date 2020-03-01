@@ -12,7 +12,7 @@ export const rooms = () => {
     div.append(roomsList(room));
   });
 
-  fragment.append('<h2>Pokoje</h2>').append(div);
+  fragment.append('<h2>POKOJE</h2>').append(div);
 
   return fragment;
 };
