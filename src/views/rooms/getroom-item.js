@@ -1,6 +1,6 @@
 /** @format */
 import $ from 'jquery';
-const roomsTable = [];
+export const roomsTable = [];
 
 export const roomListItem = r => {
   const div = $(
@@ -59,7 +59,6 @@ export const roomListItem = r => {
       name: roomName,
       cost: roomCost
     });
-    console.log(roomsTable);
   });
 
   return div;

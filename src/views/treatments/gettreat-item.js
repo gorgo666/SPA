@@ -1,14 +1,13 @@
 /** @format */
 
 import $ from 'jquery';
-const treatsTable = [];
+export const treatsTable = [];
 import img from '../../img/treat4.jpg';
 
 export const treatListItem = t => {
   const div = $(
     `<div class="item" style="background-image: url(${t.url})"></div>`
   );
-  console.log(img);
 
   const pname = $(`<p class="name">${t.name}</p>`);
   const pprice = $(`<p class="price">${t.price} PLN</p>`);
@@ -62,7 +61,6 @@ export const treatListItem = t => {
       name: treatName,
       cost: treatCost
     });
-    console.log(treatsTable);
   });
 
   return div;
