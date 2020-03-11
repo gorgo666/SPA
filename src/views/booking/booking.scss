@@ -1,12 +1,51 @@
 /** @format */
 
+$smallfont: 24px;
+
 .container {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 .dateContainer {
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+.treatsContainer,
+.roomsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+i {
+  font-size: $smallfont;
+  margin: 16px;
+}
+
+.far {
+  color: red;
+}
+.fa-pen-square {
+  color: blue;
+}
+.fa-cart-plus {
+  color: green;
+  text-align: center;
+}
+
+.room,
+.treat {
+  margin: 24px;
+  padding: 16px;
+  border: solid 2px saddlebrown;
+  border-radius: 5px;
+  box-shadow: sandybrown 8px 8px;
+}
+
+input {
+  font-size: $smallfont;
 }

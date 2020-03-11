@@ -1,42 +1,37 @@
+/** @format */
 
-export class Cart {
+import { treatsTable } from '../views/treatments/gettreat-item';
+import { roomsTable } from '../views/rooms/getroom-item';
+import $ from 'jquery';
+let startDate = '';
+let endDate = '';
 
+//dodaje ciasteczka
+export class Card {
   constructor() {
     this.key = 'IT_SPA_CART';
   }
 
-  cookie() {
-    // PRZED: 'key1=val1; key2=val2; . . .'
-    const cookies = document.cookie.split(';');
-    // PO: ['key1=val1', 'key2=val2', . . .]
-    const itSpaCookie = cookies.find(cookie => cookie.startsWith(this.key));
-    // PO: 'IT_SPA_CART=wartosc' LUB undefined
-    return itSpaCookie;
+  //tworzenie ciasteczek
+  cookieStringAdd() {
+    document.cookie = `${
+      this.key
+    }=[{"rooms":${this.cookieroomAdd()}},{"treat":${this.cookietreatAdd()}}, {"startdate": "${startDate}"}, {"enddate": "${endDate}"}]`;
   }
-
-  exists() {
-    return this.cookie() !== undefined;
+  //zamienia tablice pokoi z obiektu na text
+  cookieroomAdd() {
+    return JSON.stringify(roomsTable);
   }
-
-  get() {
-    if (this.exists()) {
-      // 'IT_SPA_CART=wartosc'
-      const itSpaCookie = this.cookie(); // 'IT_SPA_CART=[1,2,2]'
-      const cookieValue = itSpaCookie.split('=')[1]; // ['IT_SPA_CART', '[1,2,2]']
-      const parsedValue = JSON.parse(cookieValue); // wartosc
-
-      return parsedValue;
-    } else {
-      this.set([]);
-    }
+  //zamienia tablice zabiegów z obiektu na text
+  cookietreatAdd() {
+    return JSON.stringify(treatsTable);
   }
-
-  set(value) {
-    const stringifiedValue = JSON.stringify(value);
-    document.cookie = `${this.key}=${stringifiedValue}`;
+  //zwraca poczatkową datę rezerwacji
+  startDate(start) {
+    return (startDate = start);
   }
-
-  empty() {
-    this.set([]);
+  //zwraca końcową datę rezerwacji
+  endDate(end) {
+    return (endDate = end);
   }
 }

@@ -9,8 +9,10 @@ import fontawesome from '@fortawesome/fontawesome-free/css/all.css';
 import '../../css/fontawesome.min.css';
 import { treat } from './treat';
 import { room } from './room';
+import { Card } from '../../cart/cart';
 
 export const bookingItem = () => {
+  const card = new Card();
   const book = $(`<div class="container"></div>`);
 
   const dateContainer = $(`<div class="dateContainer"></div>`);
@@ -33,19 +35,27 @@ export const bookingItem = () => {
   roomsTable.map(r => {
     roomsContainer.append(room(r));
   });
-
   let bin = '';
-  treatsTable.length !== 0 || roomsTable.length !== 0
-    ? (bin = $('<i class="fas fa-cart-plus"></i>'))
-    : (bin = '');
+  if (treatsTable.length !== 0 || roomsTable.length !== 0) {
+    bin = $('<i class="fas fa-cart-plus"></i>');
+    bin.on('click', () => {
+      card.cookieStringAdd();
+      console.log(bookDateMin);
+    });
+  }
+  bookDateMin.on('change', e => {
+    card.startDate(e.target.value);
+  });
+
+  bookDateMax.on('change', e => {
+    card.endDate(e.target.value);
+  });
 
   book
     .append(dateContainer)
     .append(roomsContainer)
     .append(treatsContainer)
     .append(bin);
-
-  // console.log(treatsTable, roomsTable);
 
   return book;
 };
