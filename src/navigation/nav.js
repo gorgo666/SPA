@@ -4,13 +4,14 @@ import $ from 'jquery';
 import { routeChange } from '../router/route-change';
 import { routes } from '../router/routes';
 import { navItem } from './nav-item';
+import { koszyk } from './koszyk';
+import { Card } from '../cart/cart';
 
 export const nav = () => {
   const navbar = $(`
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <span class="navbar-brand">IT SPA</span>
-      <ul class="navbar-nav mr-auto"></ul>
-      <p>koszyk</p>
+      <ul class="navbar-nav mr-auto"></ul>   
     </nav>
   `);
 
@@ -20,7 +21,13 @@ export const nav = () => {
     return navItem(name, () => navbar.trigger(routeChange, { path: path }));
   });
 
-  navbar.find('ul').append(navItems);
+  const card = new Card();
 
+  navbar
+    .find('ul')
+    .append(navItems)
+    .append(koszyk());
+
+  navbar.append(card.updataKoszyk());
   return navbar;
 };

@@ -40,6 +40,7 @@ export const bookingItem = () => {
     bin = $('<i class="fas fa-cart-plus"></i>');
     bin.on('click', () => {
       card.cookieStringAdd();
+      card.test();
       console.log(bookDateMin);
     });
   }

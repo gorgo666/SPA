@@ -49,3 +49,24 @@ i {
 input {
   font-size: $smallfont;
 }
+
+.cart {
+  position: relative;
+  color: white;
+  cursor: pointer;
+}
+
+.koszyk {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 80px;
+  z-index: 1;
+  padding: 16px;
+
+  background-color: #fff;
+}
+.handler {
+  position: absolute;
+  display: block;
+}
