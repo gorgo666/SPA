@@ -17,7 +17,8 @@ export class Card {
     document.cookie = `${
       this.key
     }=[{"rooms":${this.cookieroomAdd()}},{"treat":${this.cookietreatAdd()}}, {"startdate": "${startDate}"}, {"enddate": "${endDate}"}]`;
-    this.updataKoszyk();
+    // document.body.append(this.updataKoszyk());
+    this.koszykHandle();
   }
   //zamienia tablice pokoi z obiektu na text
   cookieroomAdd() {
@@ -54,7 +55,6 @@ export class Card {
   //2.1 wypisanie pokoi
   koszykroom(r) {
     const divroom = $(`<div><p>${r.name}</p><p>${r.cost}</p></div>`);
-    console.log(divroom);
     return divroom;
   }
   //2.2 wypisanie zabiegów
@@ -62,14 +62,11 @@ export class Card {
     const divtreat = $(`<div><p>${t.name}</p><p>${t.cost}</p></div>`);
     return divtreat;
   }
-  test() {
-    document.body.append(this.updataKoszyk());
-  }
 
   updataKoszyk() {
-    const div = $('<div class="koszyk"><h1>Twoje zamówienie to: </h1></div>');
-
+    let div = '';
     if (this.exist()) {
+      div = $('<div class="koszyk"><h1>Twoje zamówienie to:</h1></div>');
       const spa = this.cookie().split('=');
       const koszykData = JSON.parse(spa[1]);
       koszykData.map(item => {
@@ -83,12 +80,17 @@ export class Card {
           });
         } else if (item.startdate) {
           div.append(`<p>Od: ${item.startdate}</p>`);
-          console.log(item.startdate);
         } else if (item.enddate) {
           div.append(`<p>Do: ${item.enddate}</p>`);
         }
       });
     }
     return div[0];
+  }
+
+  koszykHandle() {
+    $('.koszyk').remove();
+    const koszyk = document.body.append(this.updataKoszyk());
+    return koszyk;
   }
 }

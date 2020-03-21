@@ -5,3 +5,37 @@
 body {
   background-image: url(./img/wood_pattern.png);
 }
+
+.slide {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2 {
+  margin: 16px;
+}
+
+@media (max-device-width: 360px) {
+  .btn-link {
+    font-size: 32px;
+  }
+  .cart {
+    font-size: 32px;
+  }
+  h2 {
+    margin: 24px;
+    font-size: 64px;
+  }
+}
+@media (max-width: 640px) {
+  .btn-link {
+    font-size: 24px;
+  }
+  .cart {
+    font-size: 24px;
+  }
+  h2 {
+    margin: 24px;
+    font-size: 32px;
+  }
+}

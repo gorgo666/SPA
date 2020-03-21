@@ -16,15 +16,42 @@ export const bookingItem = () => {
   const book = $(`<div class="container"></div>`);
 
   const dateContainer = $(`<div class="dateContainer"></div>`);
+  let bin = '';
+  let continueOrder = '';
 
-  const bookDateMin = $(
-    `<input type="date" min="${mindate()}" max="${maxdate()}">`
-  );
+  if (treatsTable.length !== 0 || roomsTable.length !== 0) {
+    continueOrder = $('<button>Kontynuuj zakupy</button>');
+    continueOrder.on('click', () => {
+      history.back();
+    });
+    const bookDateMin = $(
+      `<input type="date" min="${mindate()}" max="${maxdate()}">`
+    );
 
-  const bookDateMax = $(
-    `<input type="date" min="${mindate()}" max="${maxdate()}">`
-  );
-  dateContainer.append(bookDateMin).append(bookDateMax);
+    const bookDateMax = $(
+      `<input type="date" min="${mindate()}" max="${maxdate()}">`
+    );
+    dateContainer.append(bookDateMin).append(bookDateMax);
+
+    bookDateMin.on('change', e => {
+      card.startDate(e.target.value);
+    });
+
+    bookDateMax.on('change', e => {
+      card.endDate(e.target.value);
+    });
+    bin = $('<i class="fas fa-cart-plus"></i>');
+
+    bin.on('click', () => {
+      if (bookDateMin[0].value === '' || bookDateMax[0].value === '') {
+        alert('zaznacz daty do rezerwacji');
+      } else if (bookDateMin[0].valueAsNumber > bookDateMax[0].valueAsNumber) {
+        alert('data początkowa nie może być wieksza od daty końcowej');
+      } else {
+        card.cookieStringAdd();
+      }
+    });
+  }
 
   const roomsContainer = $(`<div class="roomsContainer"></div>`);
   const treatsContainer = $(`<div class="treatsContainer"></div>`);
@@ -35,24 +62,9 @@ export const bookingItem = () => {
   roomsTable.map(r => {
     roomsContainer.append(room(r));
   });
-  let bin = '';
-  if (treatsTable.length !== 0 || roomsTable.length !== 0) {
-    bin = $('<i class="fas fa-cart-plus"></i>');
-    bin.on('click', () => {
-      card.cookieStringAdd();
-      card.test();
-      console.log(bookDateMin);
-    });
-  }
-  bookDateMin.on('change', e => {
-    card.startDate(e.target.value);
-  });
-
-  bookDateMax.on('change', e => {
-    card.endDate(e.target.value);
-  });
 
   book
+    .append(continueOrder)
     .append(dateContainer)
     .append(roomsContainer)
     .append(treatsContainer)

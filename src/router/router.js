@@ -22,6 +22,11 @@ export class Router {
 
     // TODO: uzyj zdarzenia 'popstate', aby wyrenderowac odpowiednia
     // sciezke, gdy uzytkownik klika Wstecz (<-) lub Naprzod (->)
+    window.addEventListener('popstate', () => {
+      const { component } = this.get(location.pathname);
+      const html = component();
+      this.outlet.empty().append(html);
+    });
   }
 
   init() {

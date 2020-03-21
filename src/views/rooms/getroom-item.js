@@ -1,8 +1,10 @@
 /** @format */
 import $ from 'jquery';
+import { Router } from '../../router/router';
 export const roomsTable = [];
 
 export const roomListItem = r => {
+  const router = new Router();
   const div = $(
     `<div class="item" style="background-image: url(${r.url})"></div>`
   );
@@ -59,6 +61,7 @@ export const roomListItem = r => {
       name: roomName,
       cost: roomCost
     });
+    router.navigate('/booking');
   });
 
   return div;

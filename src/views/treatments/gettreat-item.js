@@ -3,8 +3,10 @@
 import $ from 'jquery';
 export const treatsTable = [];
 import img from '../../img/treat4.jpg';
+import { Router } from '../../router/router';
 
 export const treatListItem = t => {
+  const router = new Router();
   const div = $(
     `<div class="item" style="background-image: url(${t.url})"></div>`
   );
@@ -61,6 +63,7 @@ export const treatListItem = t => {
       name: treatName,
       cost: treatCost
     });
+    router.navigate('/booking');
   });
 
   return div;

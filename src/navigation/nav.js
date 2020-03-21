@@ -5,7 +5,6 @@ import { routeChange } from '../router/route-change';
 import { routes } from '../router/routes';
 import { navItem } from './nav-item';
 import { koszyk } from './koszyk';
-import { Card } from '../cart/cart';
 
 export const nav = () => {
   const navbar = $(`
@@ -21,13 +20,8 @@ export const nav = () => {
     return navItem(name, () => navbar.trigger(routeChange, { path: path }));
   });
 
-  const card = new Card();
+  navbar.find('ul').append(navItems);
 
-  navbar
-    .find('ul')
-    .append(navItems)
-    .append(koszyk());
-
-  navbar.append(card.updataKoszyk());
+  navbar.append(koszyk());
   return navbar;
 };

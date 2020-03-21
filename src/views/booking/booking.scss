@@ -24,6 +24,8 @@ $smallfont: 24px;
 i {
   font-size: $smallfont;
   margin: 16px;
+  cursor: pointer;
+  padding: 16px;
 }
 
 .far {
@@ -48,6 +50,10 @@ i {
 
 input {
   font-size: $smallfont;
+}
+
+ul {
+  display: flex;
 }
 
 .cart {

@@ -10,8 +10,8 @@ export const room = t => {
   div
     .append(`<p>${t.name}</p>`)
     .append(`<p>${t.cost}</p>`)
-    .append(far())
-    .append(fas());
+    .append(far());
+  // .append(fas());
 
   return div;
 };
