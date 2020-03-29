@@ -1,8 +1,18 @@
 /** @format */
 
 import $ from 'jquery';
+
 import { userService } from '../../common/user-service';
 let access = [];
+const path = '../../';
+
+// const file = require(fileName);
+// import {file} from '../../../../it-spa/database.json'
+// const low = require('lowdb');
+// const FileSync = require('lowdb/adapters/FileSync');
+
+// const adapter = new FileSync('db.json');
+// const db = low(adapter);
 
 export class Login {
   checkPass() {
@@ -39,15 +49,57 @@ export class Login {
     return input;
   }
 
+  createUser() {
+    const input = $('<input type="submit"></input>');
+
+    input.on('click', function(e) {
+      e.preventDefault();
+
+      const email = $(this)
+        .parent()
+        .find('.useremail')
+        .val();
+
+      const password = $(this)
+        .parent()
+        .find('.userepass')
+        .val();
+
+      const confirmPassword = $(this)
+        .parent()
+        .find('.userepassconf')
+        .val();
+
+      console.log(path);
+
+      // file.key = 'new value';
+
+      // fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
+      //   if (err) return console.log(err);
+      //   console.log(JSON.stringify(file));
+      //   console.log('writing to: ' + fileName);
+      // });
+
+      // db.defaults({ users: {} }).write();
+      // db.get('user').push({
+      //   id: 1,
+      //   email: 'email@email.com',
+      //   password: 'masło'
+      // });
+    });
+
+    return input;
+  }
+
   formNewUserBody() {
     const body = $(`
     <p>zarejestruj się</p>
-  <label for="email">email</label>
-  <input type="email" class="useremail"></input>
-  <label for="pass">hasło</label>
-  <input type="password" class="userepass"></input>
-  <label for="pass">powtórz hasło</label>
-  <input type="password" class="userepass"></input>
+    <label for="email">email</label>
+    <input type="email" class="useremail"></input>
+    <label for="pass">hasło</label>
+    <input type="password" class="userepass"></input>
+    <label for="pass">powtórz hasło</label>
+    <input type="password" class="userepassconf"></input>
 `);
     return body;
   }
@@ -66,7 +118,7 @@ export class Login {
 
   formNewUser() {
     const form = $('<form id="newuser" class="newuser"></form>');
-    return form.append(this.formNewUserBody()).append(this.checkPass());
+    return form.append(this.formNewUserBody()).append(this.createUser());
   }
   formExistUser() {
     const form = $('<form id="existuser" class="existuser"></form>');

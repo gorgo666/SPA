@@ -17,7 +17,7 @@ h2 {
 
 @media (max-device-width: 360px) {
   .btn-link {
-    font-size: 32px;
+    font-size: 28px;
   }
   .cart {
     font-size: 32px;
@@ -27,7 +27,7 @@ h2 {
     font-size: 64px;
   }
 }
-@media (max-width: 640px) {
+@media (max-device-width: 640px) {
   .btn-link {
     font-size: 24px;
   }
