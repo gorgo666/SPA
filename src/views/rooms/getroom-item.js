@@ -1,9 +1,10 @@
 /** @format */
 import $ from 'jquery';
 import { Router } from '../../router/router';
-export const roomsTable = [];
+import { Card } from '../../cart/cart';
 
-export const roomListItem = r => {
+export const roomListItem = (r) => {
+  const card = new Card();
   const router = new Router();
   const div = $(
     `<div class="item" style="background-image: url(${r.url})"></div>`
@@ -14,31 +15,18 @@ export const roomListItem = r => {
   const pbeds = $(`<p class="beds">ilość łóżek${r.beds}</p>`);
   const pguests = $(`<p class="guest">max. ilość gości ${r.guests}</p>`);
   const pbtn = $(`<button class="pbtn">DODAJ</button>`);
-  div
-    .append(pname)
-    .append(pprice)
-    .append(pbeds)
-    .append(pguests)
-    .append(pbtn);
+  div.append(pname).append(pprice).append(pbeds).append(pguests).append(pbtn);
 
-  div.hover(function() {
+  div.hover(function () {
     const at = $(this).attr('style');
 
-    $(this)
-      .find('.name')
-      .hide();
-    $(this)
-      .find('.price')
-      .hide();
-    $(this)
-      .find('.beds')
-      .show();
-    $(this)
-      .find('.guest')
-      .show();
+    $(this).find('.name').hide();
+    $(this).find('.price').hide();
+    $(this).find('.beds').show();
+    $(this).find('.guest').show();
     div.append(pbtn);
 
-    $(this).mouseleave(function() {
+    $(this).mouseleave(function () {
       $(this).attr('style', `${at}`);
       $('.name').show();
       $('.price').show();
@@ -47,21 +35,13 @@ export const roomListItem = r => {
     });
   });
 
-  pbtn.click(function() {
-    const roomName = $(this)
-      .parent()
-      .find('.name')
-      .text();
+  pbtn.click(function () {
+    const roomName = $(this).parent().find('.name').text();
 
-    const roomCost = $(this)
-      .parent()
-      .find('.price')
-      .text();
-    roomsTable.push({
-      name: roomName,
-      cost: roomCost
-    });
+    const roomCost = $(this).parent().find('.price').text();
+    card.roomsTablePush(roomName, roomCost);
     router.navigate('/booking');
+    card.cookieStringAdd();
   });
 
   return div;

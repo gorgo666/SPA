@@ -1,10 +1,10 @@
 /** @format */
 
-import { treatsTable } from '../views/treatments/gettreat-item';
-import { roomsTable } from '../views/rooms/getroom-item';
 import $ from 'jquery';
-let startDate = '';
-let endDate = '';
+export let startDate = '';
+export let endDate = '';
+export let treatsTable = [];
+export let roomsTable = [];
 
 //dodaje ciasteczka
 export class Card {
@@ -41,7 +41,8 @@ export class Card {
   cookie() {
     const cookies = document.cookie.split(';');
     const itSpaCookie = cookies.find(
-      cookie => cookie.startsWith(this.key) || cookie.startsWith(' IT_SPA_CART')
+      (cookie) =>
+        cookie.startsWith(this.key) || cookie.startsWith(' IT_SPA_CART')
     );
     return itSpaCookie;
   }
@@ -69,13 +70,13 @@ export class Card {
       div = $('<div class="koszyk"><h1>Twoje zamówienie to:</h1></div>');
       const spa = this.cookie().split('=');
       const koszykData = JSON.parse(spa[1]);
-      koszykData.map(item => {
+      koszykData.map((item) => {
         if (item.rooms) {
-          item.rooms.map(r => {
+          item.rooms.map((r) => {
             div.append(this.koszykroom(r));
           });
         } else if (item.treat) {
-          item.treat.map(t => {
+          item.treat.map((t) => {
             div.append(this.koszyktreat(t));
           });
         } else if (item.startdate) {
@@ -92,5 +93,25 @@ export class Card {
     $('.koszyk').remove();
     const koszyk = document.body.append(this.updataKoszyk());
     return koszyk;
+  }
+  koszykRemove() {
+    $('.koszyk').remove();
+    $('.container').remove();
+    treatsTable = [];
+    roomsTable = [];
+    startDate = '';
+    endDate = '';
+  }
+  treatsTablePush(treatName, treatCost) {
+    treatsTable.push({
+      name: treatName,
+      cost: treatCost,
+    });
+  }
+  roomsTablePush(roomName, roomCost) {
+    roomsTable.push({
+      name: roomName,
+      cost: roomCost,
+    });
   }
 }

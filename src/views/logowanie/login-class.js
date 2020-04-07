@@ -3,125 +3,86 @@
 import $ from 'jquery';
 
 import { userService } from '../../common/user-service';
+import { addUser } from './newUser';
 let access = [];
-const path = '../../';
-
-// const file = require(fileName);
-// import {file} from '../../../../it-spa/database.json'
-// const low = require('lowdb');
-// const FileSync = require('lowdb/adapters/FileSync');
-
-// const adapter = new FileSync('db.json');
-// const db = low(adapter);
 
 export class Login {
-  checkPass() {
-    const input = $('<input type="submit"></input>');
+  createUser() {
+    const input = $('.sendnew');
 
-    input.on('click', function(e) {
+    input;
+    return input;
+  }
+
+  formNewUserBody() {
+    const body = $(`
+    <form id="newuser" class="newuser">
+    <p>zarejestruj się</p>
+    <label for="email">email</label>
+    <input type="email" required class="useremail"></input>
+    <label for="pass">hasło</label>
+    <input type="password" class="userepass" required></input>
+    <label for="pass">powtórz hasło</label>
+    <input type="password" class="userepassconf" required></input>
+    <input type="submit" class="sendnew"></input>
+    </form>`);
+
+    body.on('submit', function (e) {
       e.preventDefault();
 
-      const email = $(this)
-        .parent()
-        .find('.useremail')
-        .val();
+      const email = $(this).parent().find('.useremail').val();
 
-      const password = $(this)
-        .parent()
-        .find('.userepass')
-        .val();
+      const password = $(this).parent().find('.userepass').val();
 
-      console.log(email, password);
+      const confirmPassword = $(this).parent().find('.userepassconf').val();
+
+      // console.log(email, password, confirmPassword);
+      addUser();
+    });
+
+    return body;
+  }
+
+  formExistUserBody() {
+    const body = $(`
+    <form id="existuser" class="existuser">
+    <p>zaloguj się</p>
+    <label for="email">email: </br><input type="email" class="useremail" required></input></label>    
+    <label for="pass">hasło: </br><input type="password" class="userepass" required></input></label>
+    <input type="submit" class="send"></input>
+    </form>
+    `);
+
+    body.on('submit', function (e) {
+      e.preventDefault();
+
+      const email = $(this).parent().find('.useremail').val();
+
+      const password = $(this).parent().find('.userepass').val();
 
       if (access.length === 0) {
         access.push(email);
         access.push(password);
       }
 
-      userService.getUsers(email).then(user => {
+      userService.getUsers(email).then((user) => {
         if (user[0].email === email && user[0].pass === password) {
           alert('jesteś zalogowany');
+        } else {
+          alert('nie udało Ci się zalogować!!');
         }
       });
       access = [];
     });
-
-    return input;
-  }
-
-  createUser() {
-    const input = $('<input type="submit"></input>');
-
-    input.on('click', function(e) {
-      e.preventDefault();
-
-      const email = $(this)
-        .parent()
-        .find('.useremail')
-        .val();
-
-      const password = $(this)
-        .parent()
-        .find('.userepass')
-        .val();
-
-      const confirmPassword = $(this)
-        .parent()
-        .find('.userepassconf')
-        .val();
-
-      console.log(path);
-
-      // file.key = 'new value';
-
-      // fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
-      //   if (err) return console.log(err);
-      //   console.log(JSON.stringify(file));
-      //   console.log('writing to: ' + fileName);
-      // });
-
-      // db.defaults({ users: {} }).write();
-      // db.get('user').push({
-      //   id: 1,
-      //   email: 'email@email.com',
-      //   password: 'masło'
-      // });
-    });
-
-    return input;
-  }
-
-  formNewUserBody() {
-    const body = $(`
-    <p>zarejestruj się</p>
-    <label for="email">email</label>
-    <input type="email" class="useremail"></input>
-    <label for="pass">hasło</label>
-    <input type="password" class="userepass"></input>
-    <label for="pass">powtórz hasło</label>
-    <input type="password" class="userepassconf"></input>
-`);
-    return body;
-  }
-
-  formExistUserBody() {
-    const body = $(`
-    <p>zaloguj się</p>
-    <label for="email">email</label>
-    <input type="email" class="useremail"></input>
-    <label for="pass">hasło</label>
-    <input type="password" class="userepass"></input>
- 
-`);
     return body;
   }
 
   formNewUser() {
-    const form = $('<form id="newuser" class="newuser"></form>');
-    return form.append(this.formNewUserBody()).append(this.createUser());
+    const form = $('<div></div>');
+    return form.append(this.formNewUserBody());
   }
   formExistUser() {
-    const form = $('<form id="existuser" class="existuser"></form>');
-    return form.append(this.formExistUserBody()).append(this.checkPass());
+    const form = $('<div></div>');
+    return form.append(this.formExistUserBody());
   }
 }

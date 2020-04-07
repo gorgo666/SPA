@@ -1,12 +1,13 @@
 /** @format */
 
 import $ from 'jquery';
-export const treatsTable = [];
-import img from '../../img/treat4.jpg';
-import { Router } from '../../router/router';
 
-export const treatListItem = t => {
+import { Router } from '../../router/router';
+import { Card } from '../../cart/cart';
+
+export const treatListItem = (t) => {
   const router = new Router();
+  const card = new Card();
   const div = $(
     `<div class="item" style="background-image: url(${t.url})"></div>`
   );
@@ -16,31 +17,18 @@ export const treatListItem = t => {
   const parea = $(`<p class="beds">doskonały na ${t.area}</p>`);
   const ptime = $(`<p class="guest">czas ${t.time}</p>`);
   const pbtn = $(`<button class="pbtn">DODAJ</button>`);
-  div
-    .append(pname)
-    .append(pprice)
-    .append(parea)
-    .append(ptime)
-    .append(pbtn);
+  div.append(pname).append(pprice).append(parea).append(ptime).append(pbtn);
 
-  div.hover(function() {
+  div.hover(function () {
     const at = $(this).attr('style');
 
-    $(this)
-      .find('.name')
-      .hide();
-    $(this)
-      .find('.price')
-      .hide();
-    $(this)
-      .find('.beds')
-      .show();
-    $(this)
-      .find('.guest')
-      .show();
+    $(this).find('.name').hide();
+    $(this).find('.price').hide();
+    $(this).find('.beds').show();
+    $(this).find('.guest').show();
     div.append(pbtn);
 
-    $(this).mouseleave(function() {
+    $(this).mouseleave(function () {
       $(this).attr('style', `${at}`);
       $('.name').show();
       $('.price').show();
@@ -49,21 +37,13 @@ export const treatListItem = t => {
     });
   });
 
-  pbtn.click(function() {
-    const treatName = $(this)
-      .parent()
-      .find('.name')
-      .text();
+  pbtn.click(function () {
+    const treatName = $(this).parent().find('.name').text();
 
-    const treatCost = $(this)
-      .parent()
-      .find('.price')
-      .text();
-    treatsTable.push({
-      name: treatName,
-      cost: treatCost
-    });
+    const treatCost = $(this).parent().find('.price').text();
+    card.treatsTablePush(treatName, treatCost);
     router.navigate('/booking');
+    card.cookieStringAdd();
   });
 
   return div;

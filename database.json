@@ -45,68 +45,60 @@
       "url": "/room4.695d76e2.jpg"
     },
     {
-      "id": 1,
-      "name": "Pokój unarny",
+      "id": 5,
+      "name": "Pokój Konrad",
       "beds": 1,
-      "guests": 1,
-      "price": 170,
+      "guests": 2,
+      "price": 175,
       "url": "/room1.183451b9.jpg"
     },
     {
-      "id": 2,
-      "name": "Pokój binarny",
+      "id": 6,
+      "name": "Pokój Zamek Czocha",
       "beds": 1,
       "guests": 2,
       "price": 240,
       "url": "/room2.22dd2f1d.jpg"
     },
     {
-      "id": 3,
-      "name": "Pokój trójkowy",
+      "id": 7,
+      "name": "Pokój Faltom",
       "beds": 2,
       "guests": 3,
-      "price": 290,
+      "price": 280,
       "url": "/room3.13f91a4e.jpg"
     },
     {
-      "id": 4,
-      "name": "Pokój czwórkowy",
+      "id": 8,
+      "name": "Pokój czwórkowy premium",
       "beds": 2,
       "guests": 4,
-      "price": 340,
+      "price": 440,
       "url": "/room4.695d76e2.jpg"
     },
     {
-      "id": 1,
-      "name": "Pokój unarny",
+      "id": 9,
+      "name": "Pokój unarny premium",
       "beds": 1,
       "guests": 1,
-      "price": 170,
+      "price": 270,
       "url": "/room1.183451b9.jpg"
     },
     {
-      "id": 2,
-      "name": "Pokój binarny",
+      "id": 10,
+      "name": "Pokój binarny premium",
       "beds": 1,
       "guests": 2,
-      "price": 240,
+      "price": 340,
       "url": "/room2.22dd2f1d.jpg"
     },
     {
-      "id": 3,
-      "name": "Pokój trójkowy",
+      "id": 11,
+      "name": "Pokój trójkowy premium",
       "beds": 2,
       "guests": 3,
-      "price": 290,
+      "price": 390,
       "url": "/room3.13f91a4e.jpg"
-    },
-    {
-      "id": 4,
-      "name": "Pokój czwórkowy",
-      "beds": 2,
-      "guests": 4,
-      "price": 340,
-      "url": "/room4.695d76e2.jpg"
     }
   ],
   "treatments": [
@@ -167,8 +159,8 @@
       "url": "/treat6.f47bfdbb.jpg"
     },
     {
-      "id": 7,
-      "name": "Depilacja dyskiem twardym",
+      "id": 8,
+      "name": "Depilacja binarna",
       "area": "body",
       "time": 45,
       "price": 120,

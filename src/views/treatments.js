@@ -7,7 +7,7 @@ import { treatsList } from './treatments/gettreat';
 export const treatments = () => {
   let div = $('<div class="treatments"></div>');
   const fragment = $(new DocumentFragment());
-  treatsService.getTreats().then(treat => {
+  treatsService.getTreats().then((treat) => {
     div.append(treatsList(treat));
   });
 

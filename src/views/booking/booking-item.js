@@ -1,15 +1,18 @@
 /** @format */
+
 import $ from 'jquery';
 import { mindate } from './mindate';
 import { maxdate } from './maxdate';
-import { treatsTable } from '../treatments/gettreat-item';
-import { roomsTable } from '../rooms/getroom-item';
+import { treatsTable } from '../../cart/cart';
+import { roomsTable } from '../../cart/cart';
 import './booking.scss';
 import fontawesome from '@fortawesome/fontawesome-free/css/all.css';
 import '../../css/fontawesome.min.css';
 import { treat } from './treat';
 import { room } from './room';
 import { Card } from '../../cart/cart';
+import { startDate } from '../../cart/cart';
+import { endDate } from '../../cart/cart';
 
 export const bookingItem = () => {
   const card = new Card();
@@ -25,20 +28,22 @@ export const bookingItem = () => {
       history.back();
     });
     const bookDateMin = $(
-      `<input type="date" min="${mindate()}" max="${maxdate()}">`
+      `<input type="date" value="${startDate}" min="${mindate()}" max="${maxdate()}">`
     );
 
     const bookDateMax = $(
-      `<input type="date" min="${mindate()}" max="${maxdate()}">`
+      `<input type="date" value="${endDate}" min="${mindate()}" max="${maxdate()}">`
     );
     dateContainer.append(bookDateMin).append(bookDateMax);
 
-    bookDateMin.on('change', e => {
+    bookDateMin.on('change', (e) => {
       card.startDate(e.target.value);
+      card.cookieStringAdd();
     });
 
-    bookDateMax.on('change', e => {
+    bookDateMax.on('change', (e) => {
       card.endDate(e.target.value);
+      card.cookieStringAdd();
     });
     bin = $('<i class="fas fa-cart-plus"></i>');
 
@@ -48,7 +53,10 @@ export const bookingItem = () => {
       } else if (bookDateMin[0].valueAsNumber > bookDateMax[0].valueAsNumber) {
         alert('data początkowa nie może być wieksza od daty końcowej');
       } else {
-        card.cookieStringAdd();
+        alert('twoje zamówienie zostało potwierdzone');
+        card.koszykRemove();
+        card.endDate();
+        card.startDate();
       }
     });
   }
@@ -56,10 +64,10 @@ export const bookingItem = () => {
   const roomsContainer = $(`<div class="roomsContainer"></div>`);
   const treatsContainer = $(`<div class="treatsContainer"></div>`);
 
-  treatsTable.map(t => {
+  treatsTable.map((t) => {
     treatsContainer.append(treat(t));
   });
-  roomsTable.map(r => {
+  roomsTable.map((r) => {
     roomsContainer.append(room(r));
   });
 
