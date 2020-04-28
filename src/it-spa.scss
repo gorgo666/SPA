@@ -15,9 +15,31 @@ h2 {
   margin: 16px;
 }
 
-@media (max-device-width: 360px) {
+.userlogin {
+  color: yellow;
+  padding: 0 15px;
+}
+.continueShopping {
+  padding: 8px;
+  margin: 24px;
+  width: 30%;
+  align-self: center;
+  background-color: rgb(224, 187, 66);
+  border-radius: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  border: solid 2px black;
+}
+
+:root {
+  --btnlink-fontsize-small: 28px;
+  --btnlink-fontsize-medium: 24px;
+  --btnlink-fontsize-large: 22px;
+}
+
+@media (max-device-width: 361px) {
   .btn-link {
-    font-size: 28px;
+    font-size: var(--btnlink-fontsize-small);
   }
   .cart {
     font-size: 32px;
@@ -26,10 +48,15 @@ h2 {
     margin: 24px;
     font-size: 64px;
   }
+  .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media (max-device-width: 640px) {
   .btn-link {
-    font-size: 24px;
+    font-size: var(--btnlink-fontsize-medium);
   }
   .cart {
     font-size: 24px;

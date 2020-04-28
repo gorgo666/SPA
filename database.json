@@ -1,14 +1,19 @@
 {
   "users": [
     {
-      "id": 1,
       "email": "email@email.com",
-      "pass": "masło"
+      "pass": "Email123456",
+      "id": 1
     },
     {
-      "id": 2,
       "email": "email2@email.com",
-      "pass": "masło2"
+      "pass": "email@email.com1",
+      "id": 2
+    },
+    {
+      "email": "email3@email.com",
+      "pass": "Email3123456",
+      "id": 3
     }
   ],
   "rooms": [

@@ -3,17 +3,14 @@
 import $ from 'jquery';
 
 import { userService } from '../../common/user-service';
-import { addUser } from './newUser';
+import { newUserService } from '../../common/new-user-service';
+
+import { nav } from '../../navigation/nav';
+
 let access = [];
+export let isLogin = false;
 
 export class Login {
-  createUser() {
-    const input = $('.sendnew');
-
-    input;
-    return input;
-  }
-
   formNewUserBody() {
     const body = $(`
     <form id="newuser" class="newuser">
@@ -27,17 +24,56 @@ export class Login {
     <input type="submit" class="sendnew"></input>
     </form>`);
 
+    const passwordChecking = body.children('.userepass');
+
+    let overEight = false;
+    let number = false;
+    let bigLetter;
+
+    passwordChecking.keyup(function (e) {
+      let value = e.target.value;
+      bigLetter = false;
+
+      for (let i = 0; i < value.length; i++) {
+        if (Number.isInteger(Number(value[i]))) {
+          number = true;
+        }
+        if (value.charAt(i) === value.charAt(i).toUpperCase()) {
+          bigLetter = true;
+        }
+        if (value.length >= 8) {
+          overEight = true;
+        }
+      }
+    });
+
     body.on('submit', function (e) {
       e.preventDefault();
 
-      const email = $(this).parent().find('.useremail').val();
+      let email = $(this).parent().find('.useremail').val();
 
-      const password = $(this).parent().find('.userepass').val();
+      let password = $(this).parent().find('.userepass').val();
 
-      const confirmPassword = $(this).parent().find('.userepassconf').val();
+      let confirmPassword = $(this).parent().find('.userepassconf').val();
 
-      // console.log(email, password, confirmPassword);
-      addUser();
+      if (overEight && number && bigLetter) {
+        if (password === confirmPassword) {
+          userService.getUsers(email).then((response) => {
+            if (response[0]) {
+              alert('taki użytownik już istnieje');
+            } else {
+              newUserService.addUser(email, password);
+              email = '';
+              password = '';
+              confirmPassword = '';
+            }
+          });
+        } else {
+          alert(`"hasło" musi być takie samo jak "powtórz hasło"`);
+        }
+      } else {
+        alert('hasło musi zawierać wielką literę, cyfrę oraz minimum 8 znaków');
+      }
     });
 
     return body;
@@ -47,8 +83,8 @@ export class Login {
     const body = $(`
     <form id="existuser" class="existuser">
     <p>zaloguj się</p>
-    <label for="email">email: </br><input type="email" class="useremail" required></input></label>    
-    <label for="pass">hasło: </br><input type="password" class="userepass" required></input></label>
+    <label for="email">email: </br><input value="email@email.com" type="email" class="useremail" required></input></label>    
+    <label for="pass">hasło: </br><input value="Email123456" type="password" class="userepass" required></input></label>
     <input type="submit" class="send"></input>
     </form>
     `);
@@ -66,8 +102,12 @@ export class Login {
       }
 
       userService.getUsers(email).then((user) => {
+        console.log(email, user);
         if (user[0].email === email && user[0].pass === password) {
           alert('jesteś zalogowany');
+          isLogin = true;
+          nav();
+          isLogin = false;
         } else {
           alert('nie udało Ci się zalogować!!');
         }

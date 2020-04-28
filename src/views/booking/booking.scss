@@ -74,5 +74,10 @@ ul {
 }
 .handler {
   position: absolute;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  p {
+    font-size: 16px;
+  }
 }

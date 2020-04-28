@@ -7,8 +7,7 @@ import img3 from '../img/room3.jpg';
 
 export const home = () => {
   const fragment = $(new DocumentFragment());
-  const div = $(
-    `
+  const div = $(`
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -42,9 +41,7 @@ export const home = () => {
 <h3>WARUNKI REZERWACJI</h3>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam architecto porro, similique temporibus odit reprehenderit dolorem! Debitis rem, ratione ullam quam, non magnam modi fugiat, deserunt commodi suscipit atque ex.</p>
 </div>
-</div>
-    `
-  );
+</div>`);
 
   fragment.append('<h2>STRONA GŁÓWNA</h2>').append(div);
 

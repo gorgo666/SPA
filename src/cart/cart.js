@@ -5,6 +5,7 @@ export let startDate = '';
 export let endDate = '';
 export let treatsTable = [];
 export let roomsTable = [];
+let div = '';
 
 //dodaje ciasteczka
 export class Card {
@@ -65,9 +66,8 @@ export class Card {
   }
 
   updataKoszyk() {
-    let div = '';
     if (this.exist()) {
-      div = $('<div class="koszyk"><h1>Twoje zamówienie to:</h1></div>');
+      div = $('<div class="koszyk"><h3>Twoje zamówienie to:</h3></div>');
       const spa = this.cookie().split('=');
       const koszykData = JSON.parse(spa[1]);
       koszykData.map((item) => {
@@ -80,6 +80,7 @@ export class Card {
             div.append(this.koszyktreat(t));
           });
         } else if (item.startdate) {
+          console.log(item.startdate, item.startDate);
           div.append(`<p>Od: ${item.startdate}</p>`);
         } else if (item.enddate) {
           div.append(`<p>Do: ${item.enddate}</p>`);
@@ -97,6 +98,7 @@ export class Card {
   koszykRemove() {
     $('.koszyk').remove();
     $('.container').remove();
+    div = '';
     treatsTable = [];
     roomsTable = [];
     startDate = '';

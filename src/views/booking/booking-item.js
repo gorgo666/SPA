@@ -15,15 +15,19 @@ import { startDate } from '../../cart/cart';
 import { endDate } from '../../cart/cart';
 
 export const bookingItem = () => {
+  console.log('powinno usunąć');
   const card = new Card();
   const book = $(`<div class="container"></div>`);
 
   const dateContainer = $(`<div class="dateContainer"></div>`);
   let bin = '';
   let continueOrder = '';
+  let sumOrder;
 
   if (treatsTable.length !== 0 || roomsTable.length !== 0) {
-    continueOrder = $('<button>Kontynuuj zakupy</button>');
+    continueOrder = $(
+      '<button class="continueShopping">Kontynuuj zakupy</button>'
+    );
     continueOrder.on('click', () => {
       history.back();
     });
@@ -45,6 +49,27 @@ export const bookingItem = () => {
       card.endDate(e.target.value);
       card.cookieStringAdd();
     });
+
+    sumOrder = $(`<h2 class="sumorder">Suma: </h2>`);
+    const addSumOrder = () => {
+      let treat = 0;
+      let room = 0;
+
+      treatsTable.map((t) => {
+        console.log(parseInt(t.cost));
+        treat = parseInt(treat) + parseInt(t.cost);
+      });
+
+      roomsTable.map((r) => {
+        console.log(parseInt(r.cost), room, treat);
+        room = parseInt(room) + parseInt(r.cost);
+      });
+      console.log(treat, room, treat + room);
+      return treat + room;
+    };
+
+    sumOrder.append(addSumOrder());
+
     bin = $('<i class="fas fa-cart-plus"></i>');
 
     bin.on('click', () => {
@@ -73,6 +98,7 @@ export const bookingItem = () => {
 
   book
     .append(continueOrder)
+    .append(sumOrder)
     .append(dateContainer)
     .append(roomsContainer)
     .append(treatsContainer)
