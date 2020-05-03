@@ -15,7 +15,6 @@ import { startDate } from '../../cart/cart';
 import { endDate } from '../../cart/cart';
 
 export const bookingItem = () => {
-  console.log('powinno usunąć');
   const card = new Card();
   const book = $(`<div class="container"></div>`);
 
@@ -32,12 +31,17 @@ export const bookingItem = () => {
       history.back();
     });
     const bookDateMin = $(
-      `<input type="date" value="${startDate}" min="${mindate()}" max="${maxdate()}">`
+      `<input type="date" value="${startDate}" min="${mindate(
+        'arrival'
+      )}" max="${maxdate()}">`
     );
 
     const bookDateMax = $(
-      `<input type="date" value="${endDate}" min="${mindate()}" max="${maxdate()}">`
+      `<input type="date" value="${endDate}" min="${mindate(
+        'departure'
+      )}" max="${maxdate()}">`
     );
+
     dateContainer.append(bookDateMin).append(bookDateMax);
 
     bookDateMin.on('change', (e) => {
@@ -56,15 +60,13 @@ export const bookingItem = () => {
       let room = 0;
 
       treatsTable.map((t) => {
-        console.log(parseInt(t.cost));
         treat = parseInt(treat) + parseInt(t.cost);
       });
 
       roomsTable.map((r) => {
-        console.log(parseInt(r.cost), room, treat);
         room = parseInt(room) + parseInt(r.cost);
       });
-      console.log(treat, room, treat + room);
+
       return treat + room;
     };
 

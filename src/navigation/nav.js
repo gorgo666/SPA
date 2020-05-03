@@ -22,7 +22,6 @@ export const nav = () => {
   });
 
   navbar.find('ul').append(navItems);
-  console.log('object');
   navbar.append(loginUser()).append(koszyk());
   return navbar;
 };

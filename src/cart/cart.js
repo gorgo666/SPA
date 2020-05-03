@@ -1,11 +1,14 @@
 /** @format */
 
 import $ from 'jquery';
+import { bookingItem } from '../views/booking/booking-item';
 export let startDate = '';
 export let endDate = '';
 export let treatsTable = [];
 export let roomsTable = [];
 let div = '';
+let tableStartDate = [];
+let tableEndDate = [];
 
 //dodaje ciasteczka
 export class Card {
@@ -31,11 +34,26 @@ export class Card {
   }
   //zwraca poczatkową datę rezerwacji
   startDate(start) {
+    tableStartDate = start.split('-');
+    this.checkDate();
     return (startDate = start);
   }
   //zwraca końcową datę rezerwacji
   endDate(end) {
+    tableEndDate = end.split('-');
+    this.checkDate();
     return (endDate = end);
+  }
+  checkDate() {
+    if (
+      parseInt(tableStartDate[0]) > parseInt(tableEndDate[0]) ||
+      parseInt(tableStartDate[1]) > parseInt(tableEndDate[1]) ||
+      parseInt(tableStartDate[2]) > parseInt(tableEndDate[2])
+    ) {
+      alert('data przyjazdu jest późniejsza od daty odjazdu');
+      endDate = '';
+      startDate = '';
+    }
   }
 
   //szuka w ciasteczkach IT_SPA_CART
@@ -80,7 +98,6 @@ export class Card {
             div.append(this.koszyktreat(t));
           });
         } else if (item.startdate) {
-          console.log(item.startdate, item.startDate);
           div.append(`<p>Od: ${item.startdate}</p>`);
         } else if (item.enddate) {
           div.append(`<p>Do: ${item.enddate}</p>`);

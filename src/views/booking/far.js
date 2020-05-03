@@ -11,7 +11,6 @@ export const far = () => {
   const i = $(`<i class="far fa-trash-alt"></i>`);
 
   i.on('click', function () {
-    console.log($(this).prev().prev().text());
     $(this).prev().prev().text();
 
     treatsTable.map((t, index) => {
